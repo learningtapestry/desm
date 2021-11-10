@@ -21,6 +21,8 @@ import ResetPass from "./auth/ResetPass";
 import ConfigurationProfilesIndex from "./dashboard/configuration-profiles/ConfigurationProfilesIndex";
 import EditConfigurationProfile from "./dashboard/configuration-profiles/edit/EditConfigurationProfile";
 import UploadConfigurationProfile from "./dashboard/configuration-profiles/UploadConfigurationProfile";
+import MappingSwitcher from "./mapping/MappingSwitcher";
+import MappingWithExistingSchema from "./mapping/MappingWithExistingSchema";
 
 const Routes = (props) => {
   const { handleLogin } = props;
@@ -76,7 +78,21 @@ const Routes = (props) => {
           exact
           path="/new-mapping"
           allowNonAdmins={true}
+          component={MappingSwitcher}
+        />
+
+        <ProtectedRoute
+          exact
+          path="/new-mapping/upload"
+          allowNonAdmins={true}
           component={Mapping}
+        />
+
+        <ProtectedRoute
+          exact
+          path="/new-mapping/pick-schema"
+          allowNonAdmins={true}
+          component={MappingWithExistingSchema}
         />
 
         <ProtectedRoute

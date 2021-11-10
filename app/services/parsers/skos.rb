@@ -2,9 +2,12 @@
 
 module Parsers
   class Skos < Specification
-    def initialize graph: [], context: {}, file_content: nil
-      @context = context
-      @graph = graph
+    attr_accessor :graph, :context
+
+    def initialize args = {}
+      @context = args.fetch(:context, {})
+      @graph = args.fetch(:graph, {})
+      file_content = args.fetch(:file_content, nil)
       super(file_content: file_content) if file_content
     end
 
@@ -55,8 +58,8 @@ module Parsers
     #   like "rdfsClass", "rdf:Property", among others
     # @return [Array]
     ###
-    def exclude_skos_types(graph)
-      graph.reject {|node|
+    def exclude_skos_types
+      @graph.reject {|node|
         Parsers::JsonLd::Node.new(node).types.skos_type?
       }
     end

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TopNav from "../shared/TopNav";
 import MappingForm from "./MappingForm";
 import MappingPreview from "./MappingPreview";
@@ -35,22 +35,20 @@ const Mapping = (props) => {
   };
 
   return (
-    <React.Fragment>
-      <div className="wrapper">
-        <TopNav centerContent={navCenterOptions} />
-        <div className="container-fluid container-wrapper">
-          {mappingFormErrors.length ? (
-            <AlertNotice message={mappingFormErrors} />
-          ) : (
-            ""
-          )}
-          <div className="row">
-            <MappingForm />
-            <MappingPreview redirect={handleRedirect} />
-          </div>
+    <div className="wrapper">
+      <TopNav centerContent={navCenterOptions} />
+      <div className="container-fluid container-wrapper">
+        {mappingFormErrors.length ? (
+          <AlertNotice message={mappingFormErrors} />
+        ) : (
+          ""
+        )}
+        <div className="row">
+          <MappingForm />
+          <MappingPreview redirect={handleRedirect} />
         </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

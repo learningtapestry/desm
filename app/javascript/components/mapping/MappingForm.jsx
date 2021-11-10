@@ -333,7 +333,7 @@ const MappingForm = () => {
    * Fetch the domains to be listed in the new mapping form
    * then put it in the local sate
    */
-  const fillWithDomains = () => {
+  const fetchData = () => {
     fetchDomains().then((response) => {
       if (!anyError(response)) {
         setDomains(response.domains);
@@ -341,13 +341,8 @@ const MappingForm = () => {
     });
   };
 
-  /**
-   * Use effect with an empty array as second parameter, will trigger the 'fillWithDomains'
-   * action at the 'mounted' event of this functional component (It's not actually mounted,
-   * but it mimics the same action).
-   */
   useEffect(() => {
-    fillWithDomains();
+    if (domains.length === 0) fetchData();
   }, []);
 
   return (

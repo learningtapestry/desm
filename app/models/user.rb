@@ -82,4 +82,8 @@ class User < ApplicationRecord
   def as_json(options={})
     super options.merge(methods: %i[roles organization])
   end
+
+  def available_domains_to_map
+    profile_admin? || super_admin? ? Domain.all : organization.configuration_profile.abstract_classes.domains
+  end
 end

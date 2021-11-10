@@ -4,7 +4,11 @@
 # @description: Place all the actions related to specifications
 ###
 class Api::V1::SpecificationsController < ApplicationController
-  before_action :with_instance
+  before_action :with_instance, only: %i[create show destroy]
+
+  def index
+    render json: current_user.organization&.schemes || []
+  end
 
   ###
   # @description: Create a specification with its terms. Store it from an already
