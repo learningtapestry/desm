@@ -4,7 +4,7 @@ module Parsers
   class Skos < Specification
     attr_accessor :graph, :context
 
-    def initialize args = {}
+    def initialize args={}
       @context = args.fetch(:context, {})
       @graph = args.fetch(:graph, {})
       file_content = args.fetch(:file_content, nil)
